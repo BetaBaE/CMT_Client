@@ -10,6 +10,7 @@ import {
   SimpleForm,
   TextInput,
   Toolbar,
+  required,
   useNotify,
 } from "react-admin";
 import { getChantier, getFournisseur } from "../Global/getAssets.mjs";
@@ -61,12 +62,12 @@ const EditAvance = (props) => {
 
     if (montantAvance > montantTotal) {
       notify(
-        "Montant Avance should not be greater than Montant Total",
+        "Le Montant Avance ne doit pas être supérieur au Montant Total",
         "warning"
       );
       return {
         MontantAvance:
-          "Montant Avance should not be greater than Montant Total",
+          "Le Montant Avance ne doit pas être supérieur au Montant Total",
       };
     }
 
@@ -81,17 +82,25 @@ const EditAvance = (props) => {
           </Grid>
 
           <Grid item lg={6} md={12} sm={12} xs={12}>
-            <TextInput source="BonCommande" className={classes.inputSize} />
-          </Grid>
-          <Grid item lg={6} md={12} sm={12} xs={12}>
-            <NumberInput
-              source="MontantAvance"
-              // validate={MontantAvance}
+            <TextInput
+              source="BonCommande"
+              validate={required("Entrer un BonCommande")}
               className={classes.inputSize}
             />
           </Grid>
           <Grid item lg={6} md={12} sm={12} xs={12}>
-            <NumberInput source="MontantTotal" className={classes.inputSize} />
+            <NumberInput
+              source="MontantAvance"
+              validate={required("Entrer un Monatant d'avance")}
+              className={classes.inputSize}
+            />
+          </Grid>
+          <Grid item lg={6} md={12} sm={12} xs={12}>
+            <NumberInput
+              source="MontantTotal"
+              validate={required("Entrer un BonCommande")}
+              className={classes.inputSize}
+            />
           </Grid>
           <Grid item lg={6} md={12} sm={12} xs={12}>
             <TextInput
@@ -108,6 +117,8 @@ const EditAvance = (props) => {
           <Grid item lg={6} md={12} sm={12} xs={12}>
             <AutocompleteInput
               source="IdFournisseur"
+              label="Fournisseur"
+              validate={required("Entrer un Fournisseur")}
               choices={fournisseurs_choices}
               className={classes.inputSize}
             />
@@ -139,6 +150,7 @@ const EditAvance = (props) => {
           <Grid item lg={6} md={12} sm={12} xs={12}>
             <AutocompleteInput
               source="Chantier"
+              validate={required("Entrer un Chantier")}
               choices={chantier_choices}
               className={classes.inputSize}
             />

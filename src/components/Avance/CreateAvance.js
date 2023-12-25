@@ -54,12 +54,12 @@ const CreateAvance = () => {
 
     if (montantAvance > montantTotal) {
       notify(
-        "Montant Avance should not be greater than Montant Total",
+        "Le Montant Avance ne doit pas être supérieur au Montant Total",
         "warning"
       );
       return {
         MontantAvance:
-          "Montant Avance should not be greater than Montant Total",
+          "Le Montant Avance ne doit pas être supérieur au Montant Total",
       };
     }
 
