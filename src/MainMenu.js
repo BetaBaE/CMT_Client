@@ -8,11 +8,12 @@ import {
   FaFileInvoiceDollar,
   FaUserTie,
 } from "react-icons/fa6";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
 export const MainMenu = () => (
   <Menu>
     {/* <Menu.DashboardItem /> */}
-    <SubMenu primaryText="Section Facture" leftIcon={<BookIcon />}>
+    <SubMenu primaryText="Section Facture" leftIcon={<ChevronRightIcon />}>
       <Menu.Item
         to="Avance"
         primaryText="Avance"
@@ -25,7 +26,7 @@ export const MainMenu = () => (
       />
     </SubMenu>
 
-    <SubMenu primaryText="Section Fournisseur" leftIcon={<BookIcon />}>
+    <SubMenu primaryText="Section Fournisseur" leftIcon={<ChevronRightIcon />}>
       <Menu.Item
         to="fournisseurs"
         primaryText="Fournisseurs"
