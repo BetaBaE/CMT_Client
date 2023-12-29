@@ -8,6 +8,7 @@ import {
   TextInput,
   regex,
   required,
+  useGetIdentity,
 } from "react-admin";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/styles";
@@ -21,6 +22,9 @@ const useStyles = makeStyles(() => ({
 }));
 
 const CreateFacture = () => {
+  const classes = useStyles();
+  const { identity, isLoading: identityLoading } = useGetIdentity();
+
   const valideBC = regex(/^CF\d{6}$/, "Veuillez entrer un Bc valide CF123456");
 
   const [fournisseurs, setFournisseurs] = useState([]);
@@ -49,14 +53,20 @@ const CreateFacture = () => {
     let name = `${item.id} | ${item.LIBELLE}`;
     return { id, name };
   });
-
-  const classes = useStyles();
+  const { isLoading, error } = useGetIdentity();
+  if (isLoading) return <>Loading</>;
+  if (error) return <>Error</>;
   return (
     <Create>
       <SimpleForm>
         <Grid container spacing={1}>
           <Grid item lg={6} md={12} sm={12} xs={12}>
-            <TextInput source="Redacteur" className={classes.inputSize} />
+            <TextInput
+              source="Redacteur"
+              defaultValue={identity.fullName}
+              disabled
+              className={classes.inputSize}
+            />
           </Grid>
           <Grid item lg={6} md={12} sm={12} xs={12}>
             <TextInput

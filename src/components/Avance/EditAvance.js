@@ -56,26 +56,20 @@ const EditAvance = (props) => {
     let name = `${item.id} | ${item.LIBELLE}`;
     return { id, name };
   });
-  const validateMontantAvance = (values) => {
-    const montantAvance = values.MontantAvance || 0;
-    const montantTotal = values.MontantTotal || 0;
-
-    if (montantAvance > montantTotal) {
+  const validateMontantAvance = (value, allValues) => {
+    const montantAvance = allValues.MontantTotal;
+    if (value > montantAvance) {
       notify(
-        "Le Montant Avance ne doit pas être supérieur au Montant Total",
+        "Le montant d'avance ne peut pas être supérieur au montant total ",
         "warning"
       );
-      return {
-        MontantAvance:
-          "Le Montant Avance ne doit pas être supérieur au Montant Total",
-      };
+      return "Le montant d'avance ne peut pas être supérieur au montant total";
     }
-
-    return {};
+    return undefined;
   };
   return (
     <Edit {...props}>
-      <SimpleForm toolbar={<EditToolbar />} validate={validateMontantAvance}>
+      <SimpleForm toolbar={<EditToolbar />}>
         <Grid container spacing={1}>
           <Grid item lg={6} md={12} sm={12} xs={12}>
             <TextInput source="id" className={classes.inputSize} disabled />
@@ -85,13 +79,17 @@ const EditAvance = (props) => {
             <TextInput
               source="BonCommande"
               validate={required("Entrer un BonCommande")}
+              disabled
               className={classes.inputSize}
             />
           </Grid>
           <Grid item lg={6} md={12} sm={12} xs={12}>
             <NumberInput
               source="MontantAvance"
-              validate={required("Entrer un Monatant d'avance")}
+              validate={[
+                required("Entrer un Monatant d'avance"),
+                validateMontantAvance,
+              ]}
               className={classes.inputSize}
             />
           </Grid>
@@ -176,7 +174,8 @@ const EditAvance = (props) => {
             <SelectInput
               source="Restituer"
               className={classes.inputSize}
-              emptyValue={0}
+              // emptyValue={1}
+              defaultValue={"non"}
               choices={[
                 { id: "oui", name: "oui" },
                 { id: "non", name: "non" },

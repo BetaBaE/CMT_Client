@@ -22,12 +22,14 @@ import { ListRibFournisseur } from "./components/RibFournisseur/ListRibFournisse
 import { EditRibFournisseur } from "./components/RibFournisseur/EditRibFournisseur";
 import { MainMenu } from "./MainMenu";
 import EditAvance from "./components/Avance/EditAvance";
+import { auth } from "./authProvider";
 
 function App() {
   return (
     <Admin
       dataProvider={restProvider("http://10.111.1.232:8080")}
       // layout={MainMenu}
+      authProvider={auth}
       menu={MainMenu}
     >
       <Resource
