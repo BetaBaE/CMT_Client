@@ -136,7 +136,7 @@ const CreateAvance = () => {
               source="BonCommande"
               className={classes.inputSize}
               validate={[
-                required("Veuillez entrer un Bc"),
+                required("Veuillez entrer un bon de commande"),
                 validateBc,
                 validBc,
               ]}
