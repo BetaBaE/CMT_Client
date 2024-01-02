@@ -1,4 +1,4 @@
-import { Admin, EditGuesser, Resource } from "react-admin";
+import { Admin, Resource } from "react-admin";
 import restProvider from "ra-data-simple-rest";
 import ListFactures from "./components/Factures/ListFactures";
 import CreateFacture from "./components/Factures/CreateFacture";
@@ -23,10 +23,12 @@ import { EditRibFournisseur } from "./components/RibFournisseur/EditRibFournisse
 import { MainMenu } from "./MainMenu";
 import EditAvance from "./components/Avance/EditAvance";
 import { auth } from "./authProvider";
+import MyLogin from "./LoginPage/login";
 
 function App() {
   return (
     <Admin
+      loginPage={MyLogin}
       dataProvider={restProvider("http://10.111.1.232:8080")}
       // layout={MainMenu}
       authProvider={auth}
