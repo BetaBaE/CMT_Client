@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Menu } from "react-admin";
-import BookIcon from "@mui/icons-material/Book";
 import SubMenu from "./SubMenu";
 import {
   FaCreditCard,
@@ -13,6 +12,7 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 export const MainMenu = () => (
   <Menu>
     {/* <Menu.DashboardItem /> */}
+    <Menu.Item to="users" primaryText="Users" leftIcon={<FaUserTie />} />
     <SubMenu primaryText="Section Facture" leftIcon={<ChevronRightIcon />}>
       <Menu.Item
         to="Avance"
