@@ -5,10 +5,8 @@ import {
   Create,
   DateInput,
   NumberInput,
-  SaveButton,
   SimpleForm,
   TextInput,
-  Toolbar,
   regex,
   required,
   useGetIdentity,
@@ -19,19 +17,6 @@ import {
   getChantier,
   getFournisseur,
 } from "../Global/getAssets.mjs";
-
-// const MyToolbar = () => (
-// <Toolbar>
-//   <SaveButton
-//     type="button"
-//     // mutationOptions={on}
-//     // onClick={(e) => {
-//     //   e.preventDefault();
-//     //   // e.stopPropagation();
-//     // }}
-//   />
-// </Toolbar>
-// );
 
 const useStyles = makeStyles(() => ({
   inputSize: {
