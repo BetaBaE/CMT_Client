@@ -27,6 +27,9 @@ import MyLogin from "../../LoginPage/login";
 import CreateUser from "../users/CreateUser";
 import ListUsers from "../users/ListUsers";
 import EditUser from "../users/EditUser";
+import CreateFicheNavette from "../FichNavette/CreateFicheNavette";
+import EditFicheNavette from "../FichNavette/EditFicheNavette";
+import ListFicheNavette from "../FichNavette/ListFicheNavette";
 
 export {
   Admin,
@@ -57,4 +60,7 @@ export {
   MyLogin,
   CreateUser,
   EditUser,
+  ListFicheNavette,
+  CreateFicheNavette,
+  EditFicheNavette,
 };
