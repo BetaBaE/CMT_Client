@@ -1,3 +1,4 @@
+import { EditGuesser, ListGuesser } from "react-admin";
 import {
   Admin,
   Resource,
@@ -27,6 +28,9 @@ import {
   MyLogin,
   CreateUser,
   EditUser,
+  CreateFicheNavette,
+  EditFicheNavette,
+  ListFicheNavette,
 } from "./components/Global/exports";
 
 function App() {
@@ -53,9 +57,16 @@ function App() {
       />
       <Resource
         name="factures"
-        options={{ label: "Factures" }}
+        // options={{ label: "Factures" }}
         list={ListFactures}
         create={CreateFacture}
+        icon={FaFileInvoice}
+      />
+      <Resource
+        name="ficheNavette"
+        list={ListFicheNavette}
+        create={CreateFicheNavette}
+        edit={EditGuesser}
         icon={FaFileInvoice}
       />
       <Resource

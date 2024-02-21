@@ -24,6 +24,11 @@ export const MainMenu = () => (
         primaryText="Factures"
         leftIcon={<FaFileInvoice />}
       />
+      <Menu.Item
+        to="FicheNavette"
+        primaryText="Fiche navette"
+        leftIcon={<FaFileInvoice />}
+      />
     </SubMenu>
 
     <SubMenu primaryText="Section Fournisseur" leftIcon={<ChevronRightIcon />}>
