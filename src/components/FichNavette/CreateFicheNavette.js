@@ -6,6 +6,7 @@ import {
   Create,
   DateInput,
   NumberInput,
+  SelectInput,
   SimpleForm,
   TextInput,
   required,
@@ -31,15 +32,23 @@ const CreateFicheNavette = () => {
   const [chantier, setChantier] = useState([]);
   const [avance, setAvance] = useState([]);
   const [facture, setFacture] = useState([]);
-  const [factureDisabled, setFactureDisabled] = useState(false);
-  const [avanceDisabled, setAvanceDisabled] = useState(false);
+  const [factureDisabled, setFactureDisabled] = useState("");
+  const [avanceDisabled, setAvanceDisabled] = useState("");
 
-  const handleAvanceChange = () => {
-    setFactureDisabled(true);
+  const handleDisableFacture = (e) => {
+    if (e.target.value !== "") {
+      setFactureDisabled(e.target.value);
+    } else {
+      setFactureDisabled("");
+    }
   };
 
-  const handleFactureChange = () => {
-    setAvanceDisabled(true);
+  const handleDisableAvance = (e) => {
+    if (e.target.value !== "") {
+      setAvanceDisabled(e.target.value);
+    } else {
+      setAvanceDisabled("");
+    }
   };
 
   useEffect(() => {
@@ -101,7 +110,7 @@ const CreateFicheNavette = () => {
     <Create>
       <SimpleForm>
         <Grid container spacing={1}>
-          <Grid item lg={6} md={12} sm={12} xs={12}>
+          {/* <Grid item lg={6} md={12} sm={12} xs={12}>
             <TextInput
               source="Redacteur"
               defaultValue={identity.fullName}
@@ -140,26 +149,23 @@ const CreateFicheNavette = () => {
               label="Date FN"
               className={classes.inputSize}
             />
-          </Grid>
+          </Grid> */}
           <Grid item lg={6} md={12} sm={12} xs={12}>
-            <AutocompleteInput
+            <SelectInput
               className={classes.inputSize}
-              // validate={required("Veuillez entrer ")}
               source="IdAvance"
               label="Avance"
-              onChange={handleAvanceChange}
-              disabled={avanceDisabled}
-              choices={avance_choices}
+              onChange={handleDisableFacture}
+              disabled={avanceDisabled != ""}
             />
           </Grid>
           <Grid item lg={6} md={12} sm={12} xs={12}>
-            <AutocompleteInput
+            <SelectInput
               source="idFacture"
               label="Facture"
               className={classes.inputSize}
-              choices={facture_choices}
-              onChange={handleFactureChange}
-              disabled={factureDisabled}
+              onChange={handleDisableAvance}
+              disabled={factureDisabled != ""}
             />
           </Grid>
         </Grid>
