@@ -6,7 +6,6 @@ import {
   Create,
   DateInput,
   NumberInput,
-  SelectInput,
   SimpleForm,
   TextInput,
   required,
@@ -110,7 +109,7 @@ const CreateFicheNavette = () => {
     <Create>
       <SimpleForm>
         <Grid container spacing={1}>
-          {/* <Grid item lg={6} md={12} sm={12} xs={12}>
+          <Grid item lg={6} md={12} sm={12} xs={12}>
             <TextInput
               source="Redacteur"
               defaultValue={identity.fullName}
@@ -149,9 +148,9 @@ const CreateFicheNavette = () => {
               label="Date FN"
               className={classes.inputSize}
             />
-          </Grid> */}
+          </Grid>
           <Grid item lg={6} md={12} sm={12} xs={12}>
-            <SelectInput
+            <AutocompleteInput
               className={classes.inputSize}
               source="IdAvance"
               label="Avance"
@@ -160,7 +159,7 @@ const CreateFicheNavette = () => {
             />
           </Grid>
           <Grid item lg={6} md={12} sm={12} xs={12}>
-            <SelectInput
+            <AutocompleteInput
               source="idFacture"
               label="Facture"
               className={classes.inputSize}
