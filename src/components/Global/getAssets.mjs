@@ -1,5 +1,5 @@
 // let data = [];
-let apiURL = "http://10.111.1.232:8080/";
+let apiURL = "http://10.111.1.77:8080/";
 
 export const getChantier = async () => {
   try {
@@ -58,6 +58,20 @@ export const getAvance = async () => {
 export const getFacture = async () => {
   try {
     const response = await fetch(`${apiURL}factures`);
+    if (!response.ok) {
+      throw new Error("Network response was not ok.");
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return [];
+  }
+};
+
+export const getRibAtner = async () => {
+  try {
+    const response = await fetch(`${apiURL}ribatner`);
     if (!response.ok) {
       throw new Error("Network response was not ok.");
     }
