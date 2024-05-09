@@ -8,6 +8,7 @@ import {
   FaUserTie,
 } from "react-icons/fa6";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import { TbReportMoney } from "react-icons/tb";
 
 export const MainMenu = () => (
   <Menu>
@@ -27,10 +28,14 @@ export const MainMenu = () => (
       <Menu.Item
         to="FicheNavette"
         primaryText="Fiche navette"
-        leftIcon={<FaFileInvoice />}
+        leftIcon={<TbReportMoney />}
       />
     </SubMenu>
-
+    <Menu.Item
+      to="syntheseperpaiement"
+      primaryText="syntheseperpaiement"
+      leftIcon={<FaUserTie />}
+    />
     <SubMenu primaryText="Section Fournisseur" leftIcon={<ChevronRightIcon />}>
       <Menu.Item
         to="fournisseurs"
