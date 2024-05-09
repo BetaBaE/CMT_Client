@@ -4,7 +4,7 @@ import { Datagrid, DateField, List, TextField } from "react-admin";
 const ListFicheNavette = (props) => {
   return (
     <List {...props}>
-      <Datagrid bulkActionButtons={false}>
+      <Datagrid bulkActionButtons={false} rowClick="edit">
         <TextField source="id" />
         <TextField source="NumeroFN" />
         <TextField source="Chantier" />

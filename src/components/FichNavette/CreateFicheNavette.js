@@ -31,22 +31,26 @@ const CreateFicheNavette = () => {
   const [chantier, setChantier] = useState([]);
   const [avance, setAvance] = useState([]);
   const [facture, setFacture] = useState([]);
-  const [factureDisabled, setFactureDisabled] = useState("");
-  const [avanceDisabled, setAvanceDisabled] = useState("");
+  const [avanceDisabled, setAvanceDisabled] = useState(false);
+  const [factureDisabled, setFactureDisabled] = useState(false);
 
-  const handleDisableFacture = (e) => {
-    if (e.target.value !== "") {
-      setFactureDisabled(e.target.value);
-    } else {
-      setFactureDisabled("");
+  const handleAvanceChange = (value, record) => {
+    setFactureDisabled(!!value);
+  };
+
+  const handleFactureChange = (value, record) => {
+    setAvanceDisabled(!!value);
+  };
+
+  const handleAvanceBlur = () => {
+    if (!avanceDisabled) {
+      setFactureDisabled(false);
     }
   };
 
-  const handleDisableAvance = (e) => {
-    if (e.target.value !== "") {
-      setAvanceDisabled(e.target.value);
-    } else {
-      setAvanceDisabled("");
+  const handleFactureBlur = () => {
+    if (!factureDisabled) {
+      setAvanceDisabled(false);
     }
   };
 
@@ -82,13 +86,17 @@ const CreateFicheNavette = () => {
   }, []);
   const avance_choices = avance.map((item) => {
     let id = item.id;
-    // let name = `${item.id}`;
-    return id;
+    let fournisseur = `${item.Nom}`;
+    let MontantTotal = parseFloat(item.MontantTotal).toFixed(2);
+    let MontantAvance = parseFloat(item.MontantAvance).toFixed(2);
+    let name = `${id} | ${fournisseur} | ${MontantTotal} | ${MontantAvance}`;
+    return { id, name };
   });
+
   const facture_choices = facture.map((item) => {
     let id = item.id;
-    // let name = `${item.id}`;
-    return id;
+    let name = `${item.NumeroFacture}`;
+    return { name, id };
   });
   console.log(avance_choices);
   const fournisseurs_choices = fournisseurs.map((item) => {
@@ -154,8 +162,10 @@ const CreateFicheNavette = () => {
               className={classes.inputSize}
               source="IdAvance"
               label="Avance"
-              onChange={handleDisableFacture}
-              disabled={avanceDisabled != ""}
+              choices={avance_choices}
+              onChange={handleAvanceChange}
+              onBlur={handleAvanceBlur}
+              disabled={avanceDisabled}
             />
           </Grid>
           <Grid item lg={6} md={12} sm={12} xs={12}>
@@ -163,8 +173,10 @@ const CreateFicheNavette = () => {
               source="idFacture"
               label="Facture"
               className={classes.inputSize}
-              onChange={handleDisableAvance}
-              disabled={factureDisabled != ""}
+              choices={facture_choices}
+              onChange={handleFactureChange}
+              onBlur={handleFactureBlur}
+              disabled={factureDisabled}
             />
           </Grid>
         </Grid>
