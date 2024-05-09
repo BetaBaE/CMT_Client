@@ -1,4 +1,5 @@
 import { EditGuesser, ListGuesser } from "react-admin";
+import simpleRestProvider from "ra-data-simple-rest";
 import {
   Admin,
   Resource,
@@ -32,12 +33,16 @@ import {
   EditFicheNavette,
   ListFicheNavette,
 } from "./components/Global/exports";
+import CreateSynthesePrePaiement from "./components/synthesePrePaiment/CreateSynthesePrePaiement";
+import ListSynthesePrePaiment from "./components/synthesePrePaiment/ListSynthesePrePaiment";
+import EditSynthesePrePaiment from "./components/synthesePrePaiment/EditSynthesePrePaiment";
 
 function App() {
   return (
     <Admin
       loginPage={MyLogin}
-      dataProvider={restProvider("http://10.111.1.232:8080")}
+      // dataProvider={restProvider("ENT")}
+      dataProvider={simpleRestProvider("http://10.111.1.77:8080")}
       authProvider={auth}
       menu={MainMenu}
     >
@@ -66,8 +71,16 @@ function App() {
         name="ficheNavette"
         list={ListFicheNavette}
         create={CreateFicheNavette}
-        edit={EditGuesser}
+        edit={EditFicheNavette}
         icon={FaFileInvoice}
+      />
+      <Resource
+        name="syntheseperpaiement"
+        // options={{ label: "Fournisseurs" }}
+        list={ListSynthesePrePaiment}
+        create={CreateSynthesePrePaiement}
+        edit={EditSynthesePrePaiment}
+        // icon={FaUserTie}
       />
       <Resource
         name="fournisseurs"
