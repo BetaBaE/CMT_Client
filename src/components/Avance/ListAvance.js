@@ -23,6 +23,7 @@ const ListAvance = (props) => {
         <TextField source="Annulation" />
         <TextField source="Restituer" />
         <TextField source="Etat" />
+        <TextField source="VerifiyMidelt" />
         <TextField source="LIBELLE" label="Libelle" />
       </Datagrid>
     </List>

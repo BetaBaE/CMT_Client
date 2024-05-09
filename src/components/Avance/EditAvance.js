@@ -104,12 +104,14 @@ const EditAvance = (props) => {
             <TextInput
               source="DocumentReference"
               className={classes.inputSize}
+              validate={[required("Entrer un document reference")]}
             />
           </Grid>
           <Grid item lg={6} md={12} sm={12} xs={12}>
-            <TextInput
+            <DateInput
               source="DateDocumentReference"
               className={classes.inputSize}
+              validate={[required("Entrer une date document reference")]}
             />
           </Grid>
           <Grid item lg={6} md={12} sm={12} xs={12}>
@@ -129,13 +131,18 @@ const EditAvance = (props) => {
             />
           </Grid>
           <Grid item lg={6} md={12} sm={12} xs={12}>
-            <DateInput source="DateAvance" className={classes.inputSize} />
+            <DateInput
+              source="DateAvance"
+              validate={[required("Entrer une date d'avance")]}
+              className={classes.inputSize}
+            />
           </Grid>
           <Grid item lg={6} md={12} sm={12} xs={12}>
             <NumberInput
               min={1}
               defaultValue={1}
               source="NombreDeParties"
+              validate={[required("Entrer un nombre de parties")]}
               className={classes.inputSize}
             />
           </Grid>
@@ -174,11 +181,24 @@ const EditAvance = (props) => {
             <SelectInput
               source="Restituer"
               className={classes.inputSize}
-              // emptyValue={1}
-              defaultValue={"non"}
+              validate={required("verification middelt")}
+              emptyText="No category selected"
               choices={[
-                { id: "oui", name: "oui" },
-                { id: "non", name: "non" },
+                { id: "Oui", name: "Oui" },
+                { id: "Non", name: "Non" },
+              ]}
+            />
+          </Grid>
+
+          <Grid item lg={6} md={12} sm={12} xs={12}>
+            <SelectInput
+              source="VerifiyMidelt"
+              className={classes.inputSize}
+              validate={required("verification middelt")}
+              emptyText="No category selected"
+              choices={[
+                { id: "Oui", name: "Oui" },
+                { id: "Non", name: "Non" },
               ]}
             />
           </Grid>
