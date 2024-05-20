@@ -4,6 +4,7 @@ import {
   Create,
   DateInput,
   NumberInput,
+  SelectInput,
   SimpleForm,
   TextInput,
   regex,
@@ -112,24 +113,6 @@ const CreateFacture = () => {
           </Grid>
           <Grid item lg={6} md={12} sm={12} xs={12}>
             <NumberInput
-              source="MontantHT"
-              label="Montant HT"
-              min={0}
-              validate={required("Veuillez entrer un MontantHT")}
-              className={classes.inputSize}
-            />
-          </Grid>{" "}
-          <Grid item lg={6} md={12} sm={12} xs={12}>
-            <NumberInput
-              source="MontantTVA"
-              label="Montant TVA"
-              min={0}
-              validate={required("Veuillez entrer un MontantTVA")}
-              className={classes.inputSize}
-            />
-          </Grid>
-          <Grid item lg={6} md={12} sm={12} xs={12}>
-            <NumberInput
               source="MontantTTC"
               label="Montant TTC"
               min={0}
@@ -172,6 +155,20 @@ const CreateFacture = () => {
               source="Acompte"
               className={classes.inputSize}
               min={0}
+            />
+          </Grid>
+          <Grid item lg={6} md={12} sm={12} xs={12}>
+            <SelectInput
+              className={classes.inputSize}
+              validate={required("Veuillez entrer une categorie")}
+              source="categorie"
+              choices={[
+                {
+                  id: "fourniture de travaux ",
+                  name: "fourniture de travaux  ",
+                },
+                { id: "service", name: "service" },
+              ]}
             />
           </Grid>
         </Grid>
