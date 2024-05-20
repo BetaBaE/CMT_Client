@@ -7,14 +7,14 @@ export const ListFournisseur = () => {
       <Datagrid bulkActionButtons={false} rowClick="edit">
         {/* <TextField source="id" /> */}
         <TextField source="CodeFournisseur" />
-        <TextField source="nom"></TextField>
-
-        <TextField source="ICE" label="ICE" />
-        <TextField source="Identifiantfiscal" label="identifiant fiscal" />
-        <TextField source="mail" />
-        <TextField source="addresse" label="adresse" />
-        <TextField source="echeancereel" />
-        <TextField source="echeanceloi" label="echeanceloi" />
+        <TextField source="Nom" />
+        <TextField source="Ice" label="ICE" />
+        <TextField source="IdentifiantFiscal" label="identifiant fiscal" />
+        <TextField source="Mail" />
+        <TextField source="Adresse" label="adresse" />
+        <TextField source="categorie" />
+        {/* <TextField source="echeancereel" />
+        <TextField source="echeanceloi" label="echeanceloi" /> */}
       </Datagrid>
     </List>
   );
