@@ -11,6 +11,7 @@ import {
   TextInput,
   Toolbar,
   required,
+  useGetIdentity,
   useNotify,
 } from "react-admin";
 import { getChantier, getFournisseur } from "../Global/getAssets.mjs";
@@ -29,6 +30,7 @@ const EditToolbar = (props) => (
 );
 const EditAvance = (props) => {
   const classes = useStyles();
+  const { identity, isLoading, error } = useGetIdentity();
   const [fournisseurs, setFournisseurs] = useState([]);
   const [chantier, setChantier] = useState([]);
   const notify = useNotify();
@@ -67,10 +69,20 @@ const EditAvance = (props) => {
     }
     return undefined;
   };
+  if (isLoading) return <>Loading</>;
+  if (error) return <>Error</>;
   return (
     <Edit {...props}>
       <SimpleForm toolbar={<EditToolbar />}>
         <Grid container spacing={1}>
+          <Grid item lg={6} md={12} sm={12} xs={12}>
+            <TextInput
+              defaultValue={identity.fullName}
+              source="Redacteur"
+              className={classes.inputSize}
+              disabled
+            />
+          </Grid>
           <Grid item lg={6} md={12} sm={12} xs={12}>
             <TextInput source="id" className={classes.inputSize} disabled />
           </Grid>
@@ -101,6 +113,24 @@ const EditAvance = (props) => {
             />
           </Grid>
           <Grid item lg={6} md={12} sm={12} xs={12}>
+            <NumberInput
+              source="MontantHT"
+              label="Montant HT"
+              min={0}
+              validate={required("Veuillez entrer un MontantHT")}
+              className={classes.inputSize}
+            />
+          </Grid>
+          <Grid item lg={6} md={12} sm={12} xs={12}>
+            <NumberInput
+              source="MontantTVA"
+              label="Montant TVA"
+              min={0}
+              validate={required("Veuillez entrer un MontantTVA")}
+              className={classes.inputSize}
+            />
+          </Grid>
+          <Grid item lg={6} md={12} sm={12} xs={12}>
             <TextInput
               source="DocumentReference"
               className={classes.inputSize}
@@ -121,13 +151,6 @@ const EditAvance = (props) => {
               validate={required("Entrer un Fournisseur")}
               choices={fournisseurs_choices}
               className={classes.inputSize}
-            />
-          </Grid>
-          <Grid item lg={6} md={12} sm={12} xs={12}>
-            <TextInput
-              source="Redacteur"
-              className={classes.inputSize}
-              disabled
             />
           </Grid>
           <Grid item lg={6} md={12} sm={12} xs={12}>
@@ -196,6 +219,31 @@ const EditAvance = (props) => {
               className={classes.inputSize}
               validate={required("verification middelt")}
               emptyText="No category selected"
+              choices={[
+                { id: "Oui", name: "Oui" },
+                { id: "Non", name: "Non" },
+              ]}
+            />
+          </Grid>
+          <Grid item lg={6} md={12} sm={12} xs={12}>
+            <SelectInput
+              className={classes.inputSize}
+              validate={required("Veuillez entrer une categorie")}
+              source="categorie"
+              choices={[
+                {
+                  id: "fourniture de travaux ",
+                  name: "fourniture de travaux  ",
+                },
+                { id: "service", name: "service" },
+              ]}
+            />
+          </Grid>
+          <Grid item lg={6} md={12} sm={12} xs={12}>
+            <SelectInput
+              source="Annulation"
+              className={classes.inputSize}
+              defaultValue="Non"
               choices={[
                 { id: "Oui", name: "Oui" },
                 { id: "Non", name: "Non" },

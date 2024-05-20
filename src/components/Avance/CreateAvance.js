@@ -1,16 +1,16 @@
-import { Grid, makeStyles } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
+import { Grid, makeStyles } from "@material-ui/core";
 import {
   AutocompleteInput,
   Create,
   DateInput,
   NumberInput,
+  SelectInput,
   SimpleForm,
   TextInput,
   regex,
   required,
   useGetIdentity,
-  useNotify,
 } from "react-admin";
 import {
   getAvanceByBonCommande,
@@ -22,17 +22,16 @@ const useStyles = makeStyles(() => ({
   inputSize: {
     width: "90%",
   },
-  Grid: {},
 }));
 
 const CreateAvance = () => {
   const classes = useStyles();
-  const notify = useNotify();
+  const { identity } = useGetIdentity();
+
   const [fournisseurs, setFournisseurs] = useState([]);
   const [chantier, setChantier] = useState([]);
   const [avanceByBonCommande, setAvanceByBonCommande] = useState([]);
   const [bcOnBlur, setBcOnBlur] = useState("");
-  const { identity, isLoading: identityLoading } = useGetIdentity();
 
   useEffect(() => {
     getChantier().then((data) => {
@@ -62,41 +61,24 @@ const CreateAvance = () => {
     return bc;
   });
 
-  const fournisseurs_choices = fournisseurs.map((item) => {
-    let id = item.id;
-    let name = `${item.Nom} | ${item.CodeFournisseur}`;
-    return { id, name };
-  });
-  const chantier_choices = chantier.map((item) => {
-    let id = item.id;
-    let name = `${item.id} | ${item.LIBELLE}`;
-    return { id, name };
-  });
+  const fournisseurs_choices = fournisseurs.map((item) => ({
+    id: item.id,
+    name: `${item.Nom} | ${item.CodeFournisseur}`,
+  }));
 
-  //Regex for Bc to support only CF and 6 Numbers or Mc 7
+  const chantier_choices = chantier.map((item) => ({
+    id: item.id,
+    name: `${item.id} | ${item.LIBELLE}`,
+  }));
 
   const validBc = regex(
     /^(CF\d{6}|MC\d{7})$/,
     "Le bon de commande doit être au format CF123456 ou MC1234567"
   );
-  //validation for bc to not be replicated
+
   const validateBc = (value) => {
     if (bcValue.toString() === value) {
-      notify("Ce bon de commande a déjà été consommé", "warning");
       return "Ce bon de commande a déjà été consommé";
-    }
-    return undefined;
-  };
-
-  //valideation for Montant total should not be inferieur  MontantAvance
-  const validateMontantAvance = (value, allValues) => {
-    const montantAvance = allValues.MontantTotal;
-    if (value > montantAvance) {
-      notify(
-        "Le montant d'avance ne peut pas être supérieur au montant total ",
-        "warning"
-      );
-      return "Le montant d'avance ne peut pas être supérieur au montant total";
     }
     return undefined;
   };
@@ -135,21 +117,33 @@ const CreateAvance = () => {
               source="MontantAvance"
               className={classes.inputSize}
               min={0}
-              validate={[
-                required("Entrez un montant d'avance"),
-                validateMontantAvance,
-              ]}
+              validate={required("Entrez un montant d'avance")}
             />
           </Grid>
           <Grid item lg={6} md={12} sm={12} xs={12}>
             <NumberInput
               source="MontantTotal"
               className={classes.inputSize}
-              validate={[
-                required("Veuillez entrer un MontantTotal"),
-                // validateMontantTotal,
-              ]}
+              validate={required("Veuillez entrer un MontantTotal")}
               min={0}
+            />
+          </Grid>
+          <Grid item lg={6} md={12} sm={12} xs={12}>
+            <NumberInput
+              source="MontantHT"
+              label="Montant HT"
+              min={0}
+              validate={required("Veuillez entrer un MontantHT")}
+              className={classes.inputSize}
+            />
+          </Grid>
+          <Grid item lg={6} md={12} sm={12} xs={12}>
+            <NumberInput
+              source="MontantTVA"
+              label="Montant TVA"
+              min={0}
+              validate={required("Veuillez entrer un MontantTVA")}
+              className={classes.inputSize}
             />
           </Grid>
           <Grid item lg={6} md={12} sm={12} xs={12}>
@@ -200,9 +194,24 @@ const CreateAvance = () => {
               choices={chantier_choices}
             />
           </Grid>
+          <Grid item lg={6} md={12} sm={12} xs={12}>
+            <SelectInput
+              className={classes.inputSize}
+              validate={required("Veuillez entrer une categorie")}
+              source="categorie"
+              choices={[
+                {
+                  id: "fourniture de travaux ",
+                  name: "fourniture de travaux  ",
+                },
+                { id: "service", name: "service" },
+              ]}
+            />
+          </Grid>
         </Grid>
       </SimpleForm>
     </Create>
   );
 };
+
 export default CreateAvance;
