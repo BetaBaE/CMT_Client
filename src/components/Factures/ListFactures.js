@@ -17,17 +17,14 @@ import {
 
 import FilterFacture from "./FilterFacture";
 
-const FactureFilters = [      
-<TextInput source="NumeroFacture"  />
-,<TextInput source="BonCommande"  />
-]
+const FactureFilters = [
+  <TextInput source="NumeroFacture" />,
+  <TextInput source="BonCommande" />,
+];
 
 const FactureListActions = () => (
   <TopToolbar>
-    <FilterButton  
-    filters={FactureFilters}
-
-    />
+    <FilterButton filters={FactureFilters} />
     <SelectColumnsButton />
     <CreateButton />
     <ExportButton />
@@ -36,10 +33,12 @@ const FactureListActions = () => (
 
 const ListFactures = (props) => {
   return (
-    <List {...props} actions={<FactureListActions />} 
-    filters={<FilterFacture/>}
+    <List
+      {...props}
+      actions={<FactureListActions />}
+      filters={<FilterFacture />}
     >
-      <DatagridConfigurable bulkActionButtons={false}>
+      <DatagridConfigurable bulkActionButtons={false} rowClick="edit">
         <TextField source="id" />
         <TextField source="NumeroFacture" />
         <TextField source="BonCommande" />
@@ -68,6 +67,7 @@ const ListFactures = (props) => {
         <TextField source="CumulValide  " />
         <TextField source="Acompte" />
         <TextField source="Etat" />
+        <TextField source="Annulation" />
       </DatagridConfigurable>
     </List>
   );
