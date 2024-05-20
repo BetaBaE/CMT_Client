@@ -36,6 +36,7 @@ import {
 import CreateSynthesePrePaiement from "./components/synthesePrePaiment/CreateSynthesePrePaiement";
 import ListSynthesePrePaiment from "./components/synthesePrePaiment/ListSynthesePrePaiment";
 import EditSynthesePrePaiment from "./components/synthesePrePaiment/EditSynthesePrePaiment";
+import EditFacture from "./components/Factures/EditFacture";
 
 function App() {
   return (
@@ -64,6 +65,7 @@ function App() {
         name="factures"
         // options={{ label: "Factures" }}
         list={ListFactures}
+        edit={EditFacture}
         create={CreateFacture}
         icon={FaFileInvoice}
       />
