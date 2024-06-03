@@ -82,3 +82,45 @@ export const getRibAtner = async () => {
     return [];
   }
 };
+
+export const getDesignation = async () => {
+  try {
+    const response = await fetch(`${apiURL}designation`);
+    if (!response.ok) {
+      throw new Error("Network response was not ok.");
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return [];
+  }
+};
+
+export const getAvanceByFournisseur = async (id) => {
+  try {
+    const response = await fetch(`${apiURL}avancebyfournisseur/${id}`);
+    if (!response.ok) {
+      throw new Error("Network response was not ok.");
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return [];
+  }
+};
+
+export const avancesumbyfournisseur = async (id) => {
+  try {
+    const response = await fetch(`${apiURL}avancesumbyfournisseur/${id}`);
+    if (!response.ok) {
+      throw new Error("Network response was not ok.");
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return [];
+  }
+};
