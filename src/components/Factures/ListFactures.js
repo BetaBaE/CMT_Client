@@ -44,7 +44,11 @@ const ListFactures = (props) => {
         <TextField source="BonCommande" />
         {/* <TextField source="IdFournisseur" /> */}
         {/* <ReferenceField source="Nom" reference="fournisseurs" /> */}
-        <ReferenceField source="IdFournisseur" reference="allfournisseurs">
+        <ReferenceField
+          source="IdFournisseur"
+          label="fournisseurs"
+          reference="allfournisseurs"
+        >
           <TextField source="Nom" />
         </ReferenceField>
         <DateField source="DateFacture" />
@@ -54,7 +58,7 @@ const ListFactures = (props) => {
         <TextField source="MontantTVA" label="Montant TVA" />
         <TextField source="MontantTTC" label="Montant TTC" />
         <TextField source="Redacteur" />
-        <TextField source="VerifiyMidelt" />
+        <TextField source="VerifiyMidelt" label="verifier middelt" />
         <TextField source="UpdatedBy" />
         <TextField source="IdDesignation" label="Designation" />
         <DateField source="CreatedDate" />
