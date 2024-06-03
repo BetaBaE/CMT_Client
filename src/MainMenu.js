@@ -36,6 +36,11 @@ export const MainMenu = () => (
       primaryText="syntheseperpaiement"
       leftIcon={<FaUserTie />}
     />
+    <Menu.Item
+      to="enteteprepaiement"
+      primaryText="enteteprepaiement"
+      leftIcon={<FaUserTie />}
+    />
     <SubMenu primaryText="Section Fournisseur" leftIcon={<ChevronRightIcon />}>
       <Menu.Item
         to="fournisseurs"
