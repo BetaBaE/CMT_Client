@@ -37,6 +37,8 @@ import CreateSynthesePrePaiement from "./components/synthesePrePaiment/CreateSyn
 import ListSynthesePrePaiment from "./components/synthesePrePaiment/ListSynthesePrePaiment";
 import EditSynthesePrePaiment from "./components/synthesePrePaiment/EditSynthesePrePaiment";
 import EditFacture from "./components/Factures/EditFacture";
+import ListEntetePrePaiement from "./components/EntetePrePaiement/ListEntetePrePaiement";
+import CreateEntetePrePaiement from "./components/EntetePrePaiement/CreateEntetePrePaiement";
 
 function App() {
   return (
@@ -85,6 +87,14 @@ function App() {
         // icon={FaUserTie}
       />
       <Resource
+        name="enteteprepaiement"
+        // options={{ label: "Fournisseurs" }}
+        list={ListEntetePrePaiement}
+        create={CreateEntetePrePaiement}
+        // edit={EditSynthesePrePaiment}
+        // icon={FaUserTie}
+      />
+      <Resource
         name="fournisseurs"
         options={{ label: "Fournisseurs" }}
         list={ListFournisseur}
@@ -94,7 +104,7 @@ function App() {
       />
       <Resource
         name="ribatner"
-        list={ListRibAtner}
+        list={ListGuesser}
         create={CreateRibAtner}
         edit={EditRibAtner}
         icon={FaCreditCard}
